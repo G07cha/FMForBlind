@@ -21,7 +21,14 @@ class FS:
 		os.chdir(self.currentDir)
 	
 	def scanDir(self):
-		return os.listdir(self.currentDir)
+		folders = []
+		
+		""" Filtering hidden files """
+		for item in os.listdir(self.currentDir):
+			if not item.startswith('.'):
+				folders.append(item)
+		
+		return folders
 	
 	def mkdir(self, name):
 		os.mkdir(name)
@@ -54,6 +61,9 @@ class FS:
 			
 		shutil.move(src, dst)
 		self.output('Moved from ' + src + ' to ' + dst)
+		
+	def getInfo(self, filename):
+		self.output(os.stat(filename))
 	
 	""" Functions for managing output """
 	def setOutput(self, output):
