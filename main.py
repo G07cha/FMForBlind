@@ -32,7 +32,7 @@ while True:
             v.voiceOutput("Enter name for new folder")
             folder = raw_input("Enter name for folder: ")
             if folder:
-                if v.promt(folder):
+                if v.prompt(folder):
                     fs.mkdir(folder)
             else:
                 break
@@ -43,7 +43,7 @@ while True:
             v.voiceOutput("Enter item name to open")
             filename = raw_input("Enter filename: ")
             if filename:
-                if v.promt(filename):
+                if v.prompt(filename):
                     if fs.isItemExists(filename):
                         fs.openFile(filename)
                     else:
@@ -57,7 +57,7 @@ while True:
             v.voiceOutput("Select item to remove")
             filename = v.selectFrom(fs.scanDir())
             if filename:
-                if v.promt(filename):
+                if v.prompt(filename):
                     fs.removeItem(filename)
             else:
                 break
@@ -92,7 +92,7 @@ while True:
             v.voiceOutput("Enter name to find")
             filename = raw_input("Enter itemname: ")
             if filename:
-                if v.promt(filename):
+                if v.prompt(filename):
                     fs.findItem(filename)
             else:
                 break

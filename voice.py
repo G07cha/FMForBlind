@@ -1,5 +1,14 @@
 import keylogger
+import pyttsx
 
+
+engine = pyttsx.init()
+def onEnd(name, completed):
+    if completed:
+        engine.endLoop()
+        print "Finished"
+engine.setProperty('voice', 'english')
+engine.setProperty('rate', 150)
 
 class Voice:
     def __init__(self, options=False):
@@ -19,16 +28,16 @@ class Voice:
 
             if selectedIndex:
                 selectedItem = array[int(selectedIndex) - 1]
-                if self.promt(selectedItem):
+                if self.prompt(selectedItem):
                     return selectedItem
             else:
                 return False
 
-    def promt(self, selectedOption):
+    def prompt(self, selectedOption):
         self.voiceOutput('You have selected: ' + selectedOption + '. Is it correct?')
 
         isCorrect = keylogger.getkey()
-
+        print isCorrect
         if isCorrect == 'y':
             return True
         else:
@@ -37,3 +46,8 @@ class Voice:
     def voiceOutput(self, out):
         """ Pronounce given output """
         print out
+        engine.say(out)
+        engine.startLoop()
+        """ Temporary fix for jammed every second command """
+        engine.say(' ')
+        engine.startLoop()
