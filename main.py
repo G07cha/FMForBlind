@@ -28,7 +28,8 @@ while True:
 	elif key == 'm':
 		""" mkdir """
 		folder = raw_input("Enter name for folder: ")
-		fs.mkdir(folder)
+		if folder:
+			fs.mkdir(folder)
 	elif key == 'o':
 		""" xdg-open or touch """
 		filename = raw_input("Enter filename: ")
@@ -43,20 +44,20 @@ while True:
 		filename = raw_input("Enter itemname: ")
 		if filename:
 			fs.removeItem()
-	elif key == 'x':
-		""" cut(for future paste) """
+	elif key == 's':
+		""" select """
 		selection = v.selectFrom(fs.scanDir())
 		if selection:
 			selectedItem = fs.currentDir + selection
-	elif key == 'c':
-		""" copy """
+	elif key == 'x':
+		""" move """
 		if selectedItem:
-			fs.paste(selectedItem)
+			fs.move(selectedItem)
 			selectedItem = ''
 		else:
 			v.voiceOutput("Please select item first")
-	elif key == 'v':
-		""" paste """
+	elif key == 'c':
+		""" copy """
 		if selectedItem:
 			fs.move(selectedItem)
 			selectedItem = ''

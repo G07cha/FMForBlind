@@ -1,4 +1,5 @@
 import os
+import shutil
 
 class FS:
 	def __init__(self, output=False):
@@ -43,6 +44,20 @@ class FS:
 	
 	def removeItem(self, itemName):
 		os.remove(filename)
+		
+	def copy(self, src, dst=False):
+		if not dst:
+			dst = self.currentDir
+			
+		shutil.copy(src, dst)
+		self.output('Copied from ' + src + ' to ' + dst)
+	
+	def move(self, src, dst=False):
+		if not dst:
+			dst = self.currentDir
+			
+		shutil.move(src, dst)
+		self.output('Moved from ' + src + ' to ' + dst)
 	
 	""" Functions for managing output """
 	def setOutput(self, output):
