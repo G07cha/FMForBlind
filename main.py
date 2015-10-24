@@ -41,9 +41,9 @@ while True:
 				fs.openFile(filename)
 	elif key == 'd':
 		""" rm """
-		filename = raw_input("Enter itemname: ")
+		filename = v.selectFrom(fs.scanDir())
 		if filename:
-			fs.removeItem()
+			fs.removeItem(filename)
 	elif key == 's':
 		""" select """
 		selection = v.selectFrom(fs.scanDir())
@@ -65,8 +65,14 @@ while True:
 			v.voiceOutput("Please select item first")
 	elif key == 'i':
 		""" get properties """
+		item = v.selectFrom(fs.scanDir())
+		if item:
+			fs.getInfo(item)
 		
 	elif key == 'f':
 		""" find . -name """
+		filename = raw_input("Enter itemname: ")
+		if filename:
+			fs.findItem(filename)
 	else:
 		print "Invalid output\a"

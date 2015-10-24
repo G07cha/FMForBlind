@@ -1,5 +1,4 @@
-import os
-import shutil
+import os, fnmatch, shutil
 
 class FS:
 	def __init__(self, output=False):
@@ -23,7 +22,7 @@ class FS:
 	def scanDir(self):
 		folders = []
 		
-		""" Filtering hidden files """
+		""" Filter hidden files """
 		for item in os.listdir(self.currentDir):
 			if not item.startswith('.'):
 				folders.append(item)
@@ -64,6 +63,16 @@ class FS:
 		
 	def getInfo(self, filename):
 		self.output(os.stat(filename))
+	
+	def findItem(self, itemname):
+		result = []
+		
+		for root, dirs, files in os.walk(self.currentDir):
+			for name in files:
+				if fnmatch.fnmatch(name, itemname):
+					result.append(os.path.join(root, name))
+				
+		self.output(result)
 	
 	""" Functions for managing output """
 	def setOutput(self, output):
