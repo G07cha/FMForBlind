@@ -1,8 +1,8 @@
-from os import *
+import os
 
 class FS:
 	def __init__(self, output=False):
-		self.currentDir = environ['HOME'] + '/'
+		self.currentDir = os.environ['HOME'] + '/'
 		if output:
 			self.output = output
 		else:
@@ -13,22 +13,34 @@ class FS:
 			""" Searching for second '/' symbol from end and removing everything after it """
 			self.currentDir = self.currentDir[0:self.currentDir.rfind('/', 0, len(self.currentDir) - 1) + 1]
 		else:
-			""" Checking if folder exists """
-#			if folder in self.scanDir():
 			self.currentDir = self.currentDir + folder + '/'
-#			else:
-#				self.output('This folder doesn\'t exists')
+		
 		self.output('Now you are in ' + self.currentDir)
 	
 	def scanDir(self):
-		self.output(listdir(self.currentDir))
+		self.output(os.listdir(self.currentDir))
 	
 	def mkdir(self, name):
-		mkdir(self.currentDir + name)
+		os.mkdir(self.currentDir + name)
 	
 	def getDir(self):
 		self.output(self.currentDir)
 	
+	def isItemExists(self, item):
+		return item in os.listdir(self.currentDir)
+	
+	def openFile(self, filename):
+		os.system("xdg-open " + filename)
+	
+	def createFile(self, filename):
+		relativeName = self.currentDir + filename
+		open(relativeName, "w+").close()
+	
+	def editFile(self, filename):
+		f = open(filename, "w")
+		return f
+	
+	""" Functions for managing output """
 	def setOutput(self, output):
 		self.output = output
 	
