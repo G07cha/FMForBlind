@@ -59,7 +59,7 @@ while True:
 	elif key == 'c':
 		""" copy """
 		if selectedItem:
-			fs.move(selectedItem)
+			fs.copy(selectedItem)
 			selectedItem = ''
 		else:
 			v.voiceOutput("Please select item first")
