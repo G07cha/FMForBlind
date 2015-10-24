@@ -33,12 +33,14 @@ class FS:
 		os.system("xdg-open " + filename)
 	
 	def createFile(self, filename):
-		relativeName = self.currentDir + filename
-		open(relativeName, "w+").close()
+		open(self.currentDir + filename, "w+").close()
 	
 	def editFile(self, filename):
-		f = open(filename, "w")
+		f = open(self.currentDir + filename, "w")
 		return f
+	
+	def removeItem(self, itemName):
+		
 	
 	""" Functions for managing output """
 	def setOutput(self, output):
