@@ -1,6 +1,8 @@
 import termios, sys, os
 TERMIOS = termios
 
+# Source: http://python4fun.blogspot.com/2008/06/get-key-press-in-python.html
+
 def getkey():
 	fd = sys.stdin.fileno()
 	old = termios.tcgetattr(fd)
