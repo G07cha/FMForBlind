@@ -40,7 +40,7 @@ class FS:
 		return f
 	
 	def removeItem(self, itemName):
-		
+		os.remove(self.currentDir + filename)
 	
 	""" Functions for managing output """
 	def setOutput(self, output):
