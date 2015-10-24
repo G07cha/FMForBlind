@@ -38,10 +38,6 @@ class FS:
 	def createFile(self, filename):
 		open(filename, "w+").close()
 	
-	def editFile(self, filename):
-		f = open(filename, "w")
-		return f
-	
 	def removeItem(self, itemName):
 		os.remove(filename)
 		

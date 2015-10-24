@@ -38,7 +38,7 @@ while True:
 				fs.openFile(filename)
 			else:
 				fs.createFile(filename)
-				fs.editFile(filename)
+				fs.openFile(filename)
 	elif key == 'd':
 		""" rm """
 		filename = raw_input("Enter itemname: ")
