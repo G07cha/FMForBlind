@@ -20,7 +20,7 @@ class FS:
 		os.chdir(self.currentDir)
 	
 	def scanDir(self):
-		self.output(os.listdir(self.currentDir))
+		return os.listdir(self.currentDir)
 	
 	def mkdir(self, name):
 		os.mkdir(name)
@@ -29,7 +29,7 @@ class FS:
 		self.output(self.currentDir)
 	
 	def isItemExists(self, item):
-		return item in os.listdir(self.currentDir)
+		return item in scanDir()
 	
 	def openFile(self, filename):
 		os.system("xdg-open " + filename)
