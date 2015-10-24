@@ -9,6 +9,7 @@ from fs import FS
 def onScreenOutput(out):
 	print out
 
+""" Mounting output to file system """
 fs = FS(onScreenOutput)
 
 """ Main loop """
@@ -31,8 +32,16 @@ while True:
 		fs.mkdir(folder)
 	elif key == 'o':
 		""" xdg-open or touch """
+		filename = raw_input("Enter filename: ")
+		if fs.isItemExists(filename):
+			fs.openFile(filename)
+		else:
+			fs.createFile(filename)
+			fs.editFile(filename)
 	elif key == 'd':
 		""" rm """
+		filename = raw_input("Enter itemname: ")
+		fs.removeItem()
 	elif key == 'r':
 		""" mv(rename) """
 	elif key == 'c':
@@ -42,4 +51,4 @@ while True:
 	elif key == 'f':
 		""" find . -name """
 	else:
-		print "Invalid output"
+		print "Invalid output\a"
