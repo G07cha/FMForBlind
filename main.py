@@ -29,6 +29,7 @@ while True:
         """ mkdir """
 
         while True:
+            v.voiceOutput("Enter name for new folder")
             folder = raw_input("Enter name for folder: ")
             if folder:
                 if v.promt(folder):
@@ -39,6 +40,7 @@ while True:
         """ xdg-open or touch """
 
         while True:
+            v.voiceOutput("Enter item name to open")
             filename = raw_input("Enter filename: ")
             if filename:
                 if v.promt(filename):
@@ -51,9 +53,14 @@ while True:
                 break
     elif key == 'd':
         """ rm """
-        filename = v.selectFrom(fs.scanDir())
-        if filename:
-            fs.removeItem(filename)
+        while True:
+            v.voiceOutput("Select item to remove")
+            filename = v.selectFrom(fs.scanDir())
+            if filename:
+                if v.promt(filename):
+                    fs.removeItem(filename)
+            else:
+                break
     elif key == 's':
         """ select """
         selection = v.selectFrom(fs.scanDir())
@@ -82,11 +89,12 @@ while True:
     elif key == 'f':
         """ find . -name """
         while True:
+            v.voiceOutput("Enter name to find")
             filename = raw_input("Enter itemname: ")
             if filename:
                 if v.promt(filename):
                     fs.findItem(filename)
             else:
-                break;
+                break
     else:
         print "Invalid output\a"
