@@ -1,6 +1,5 @@
 import os, fnmatch, shutil, datetime
 
-
 class FS:
     def __init__(self, output=False):
         self.currentDir = os.environ['HOME'] + '/'
@@ -37,7 +36,7 @@ class FS:
         self.output(self.currentDir)
 
     def isItemExists(self, item):
-        return item in scanDir()
+        return item in self.scanDir()
 
     def openFile(self, filename):
         os.system("xdg-open " + filename)
@@ -64,8 +63,9 @@ class FS:
 
     def getInfo(self, filename):
         info = os.stat(filename)
-        self.output('Size ' + str(info.st_size) + ' created at ' + str(info.st_ctime) + ' last modified at ' + str(
-            info.st_mtime))
+        self.output('Size ' + str(info.st_size) +
+                    ' bytes, created at ' + parseTimestamp(info.st_ctime) +
+                    ', last modified at ' + parseTimestamp(info.st_mtime))
 
     def findItem(self, itemname):
         result = []
@@ -91,3 +91,6 @@ class FS:
 
 def defaultOutput(out):
     return out
+
+def parseTimestamp(timestamp):
+    return str(datetime.datetime.fromtimestamp(timestamp).strftime('%H:%M:%S %d-%m-%Y'))
