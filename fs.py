@@ -3,6 +3,7 @@ import os
 class FS:
 	def __init__(self, output=False):
 		self.currentDir = os.environ['HOME'] + '/'
+		os.chdir(self.currentDir)
 		if output:
 			self.output = output
 		else:
@@ -16,12 +17,13 @@ class FS:
 			self.currentDir = self.currentDir + folder + '/'
 		
 		self.output('Now you are in ' + self.currentDir)
+		os.chdir(self.currentDir)
 	
 	def scanDir(self):
 		self.output(os.listdir(self.currentDir))
 	
 	def mkdir(self, name):
-		os.mkdir(self.currentDir + name)
+		os.mkdir(name)
 	
 	def getDir(self):
 		self.output(self.currentDir)
@@ -33,14 +35,14 @@ class FS:
 		os.system("xdg-open " + filename)
 	
 	def createFile(self, filename):
-		open(self.currentDir + filename, "w+").close()
+		open(filename, "w+").close()
 	
 	def editFile(self, filename):
-		f = open(self.currentDir + filename, "w")
+		f = open(filename, "w")
 		return f
 	
 	def removeItem(self, itemName):
-		os.remove(self.currentDir + filename)
+		os.remove(filename)
 	
 	""" Functions for managing output """
 	def setOutput(self, output):
