@@ -19,13 +19,14 @@ class FS:
         self.output('Now you are in ' + self.currentDir)
         os.chdir(self.currentDir)
 
-    def scanDir(self):
+    def scanDir(self, foldersOnly=False):
         folders = []
 
         """ Filter hidden files """
         for item in os.listdir(self.currentDir):
             if not item.startswith('.'):
-                folders.append(item)
+				if foldersOnly == False or '.' not in item:
+				     folders.append(item)
 
         return folders
 

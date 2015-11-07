@@ -22,12 +22,11 @@ while True:
     elif key == 'n':
         """ cd """
         v.voiceOutput('Select folder to navigate')
-        folder = v.selectFrom(['..'] + fs.scanDir())
+        folder = v.selectFrom(['..'] + fs.scanDir(True))
         if folder:
             fs.navigate(folder)
     elif key == 'm':
         """ mkdir """
-
         while True:
             v.voiceOutput("Enter name for new folder")
             folder = raw_input("Enter name for folder: ")
@@ -39,7 +38,6 @@ while True:
                 break
     elif key == 'o':
         """ xdg-open or touch """
-
         while True:
             v.voiceOutput("Enter item name to open")
             filename = raw_input("Enter filename: ")
@@ -61,7 +59,7 @@ while True:
             if filename:
                 if v.prompt(filename):
                     fs.removeItem(filename)
-		    break
+                    break
             else:
                 break
     elif key == 's':
@@ -74,7 +72,6 @@ while True:
         """ move """
         if selectedItem:
             fs.move(selectedItem)
-            v.voiceOutput("Moved " + selectedItem)
             selectedItem = ''
         else:
             v.voiceOutput("Please select item first")
@@ -82,7 +79,6 @@ while True:
         """ copy """
         if selectedItem:
             fs.copy(selectedItem)
-            v.voiceOutput("Copied " + selectedItem)
             selectedItem = ''
         else:
             v.voiceOutput("Please select item first")
