@@ -6,7 +6,8 @@ engine = pyttsx.init()
 def onEnd(name, completed):
     if completed:
         engine.endLoop()
-        print "Finished"
+        
+engine.connect('finished-utterance', onEnd)
 engine.setProperty('voice', 'english')
 engine.setProperty('rate', 150)
 
