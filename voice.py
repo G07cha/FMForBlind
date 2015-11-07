@@ -22,10 +22,10 @@ class Voice:
         while True:
             index = 0
             for item in array:
-                index += 1
-				if item == '..':
-					self.voiceOutput(str(index) + ' Go to top')
-				else:
+		index += 1
+		if item == '..':
+			self.voiceOutput(str(index) + ' Go to top')
+		else:
                 	self.voiceOutput(str(index) + ' ' + item)
 
             selectedIndex = raw_input('Enter item number: ')
