@@ -66,6 +66,7 @@ while True:
                 break
     elif key == 's':
         """ select """
+        v.voiceOutput("Select item")
         selection = v.selectFrom(fs.scanDir())
         if selection:
             selectedItem = fs.currentDir + selection
@@ -73,6 +74,7 @@ while True:
         """ move """
         if selectedItem:
             fs.move(selectedItem)
+            v.voiceOutput("Moved " + selectedItem)
             selectedItem = ''
         else:
             v.voiceOutput("Please select item first")
@@ -80,6 +82,7 @@ while True:
         """ copy """
         if selectedItem:
             fs.copy(selectedItem)
+            v.voiceOutput("Copied " + selectedItem)
             selectedItem = ''
         else:
             v.voiceOutput("Please select item first")
