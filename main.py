@@ -34,6 +34,7 @@ while True:
             if folder:
                 if v.prompt(folder):
                     fs.mkdir(folder)
+		    break
             else:
                 break
     elif key == 'o':
@@ -49,6 +50,7 @@ while True:
                     else:
                         fs.createFile(filename)
                         fs.openFile(filename)
+		break
             else:
                 break
     elif key == 'd':
@@ -59,6 +61,7 @@ while True:
             if filename:
                 if v.prompt(filename):
                     fs.removeItem(filename)
+		    break
             else:
                 break
     elif key == 's':
@@ -94,6 +97,7 @@ while True:
             if filename:
                 if v.prompt(filename):
                     fs.findItem(filename)
+		    break
             else:
                 break
     else:
