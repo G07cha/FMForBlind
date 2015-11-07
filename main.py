@@ -22,7 +22,7 @@ while True:
     elif key == 'n':
         """ cd """
         v.voiceOutput('Select folder to navigate')
-        folder = v.selectFrom(fs.scanDir())
+        folder = v.selectFrom(['..'] + fs.scanDir())
         if folder:
             fs.navigate(folder)
     elif key == 'm':

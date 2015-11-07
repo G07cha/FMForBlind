@@ -23,13 +23,16 @@ class Voice:
             index = 0
             for item in array:
                 index += 1
-                self.voiceOutput(str(index) + ' ' + item)
+				if item == '..':
+					self.voiceOutput(str(index) + ' Go to top')
+				else:
+                	self.voiceOutput(str(index) + ' ' + item)
 
             selectedIndex = raw_input('Enter item number: ')
 
             if selectedIndex:
                 selectedItem = array[int(selectedIndex) - 1]
-                if self.prompt(selectedItem):
+                if self.prompt('Go to top' if selectedItem == '..' else selectedItem):
                     return selectedItem
             else:
                 return False
